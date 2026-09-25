@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -15,6 +16,8 @@ from retrieval_graph.local_index import LocalIndex, index_dir
 
 def main() -> None:
     """Run a local corpus operation."""
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="EmbedPilot local knowledge base")
     commands = parser.add_subparsers(dest="command", required=True)
     ingest = commands.add_parser(

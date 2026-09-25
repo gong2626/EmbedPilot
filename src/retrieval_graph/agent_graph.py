@@ -35,6 +35,10 @@ class AgentState(AgentInput, total=False):
     attempts: int
     citations: list[dict]
     unsupported_language: bool
+    generation_used: bool
+    citation_ids_valid: bool | None
+    cited_ids: list[int]
+    model_usage: dict
 
 
 def route_request(state: AgentState) -> dict:
@@ -54,6 +58,7 @@ def route_request(state: AgentState) -> dict:
         "route": route,
         "diagnostics": diagnostics,
         "attempts": 0,
+        "model_usage": {},
     }
 
 
@@ -78,6 +83,7 @@ async def prepare_query(state: AgentState) -> dict:
     return {
         "query": get_message_text(translation)[:1000],
         "unsupported_language": False,
+        "model_usage": {"translation": translation.usage_metadata or {}},
     }
 
 
@@ -155,6 +161,13 @@ def _citations(docs: list[Document]) -> list[dict]:
     return citations
 
 
+def validate_citation_ids(answer: str, citations: list[dict]) -> tuple[bool, list[int]]:
+    """Check citation syntax against provided IDs, without claiming factual correctness."""
+    cited = [int(value) for value in re.findall(r"\[(\d+)\]", answer)]
+    allowed = {item["id"] for item in citations}
+    return bool(cited) and set(cited).issubset(allowed), cited
+
+
 async def respond(state: AgentState) -> dict:
     """Answer from evidence, or expose a keyless evidence preview."""
     if state.get("unsupported_language"):
@@ -166,12 +179,21 @@ async def respond(state: AgentState) -> dict:
             ],
             "citations": [],
             "evidence_ok": False,
+            "generation_used": False,
+            "citation_ids_valid": None,
+            "cited_ids": [],
         }
     docs = state.get("retrieved_docs", [])
     citations = _citations(docs) if state.get("evidence_ok") else []
     if not state.get("evidence_ok"):
         answer = "当前知识库没有找到足够可靠的依据，我不能据此给出确定结论。请提供更具体的 Zephyr 版本、源码片段或完整错误上下文。"
-        return {"messages": [AIMessage(content=answer)], "citations": []}
+        return {
+            "messages": [AIMessage(content=answer)],
+            "citations": [],
+            "generation_used": False,
+            "citation_ids_valid": None,
+            "cited_ids": [],
+        }
 
     if not os.environ.get("DEEPSEEK_API_KEY"):
         source_lines = [
@@ -188,7 +210,13 @@ async def respond(state: AgentState) -> dict:
             + "\n"
             + "\n".join(source_lines)
         )
-        return {"messages": [AIMessage(content=answer)], "citations": citations}
+        return {
+            "messages": [AIMessage(content=answer)],
+            "citations": citations,
+            "generation_used": False,
+            "citation_ids_valid": None,
+            "cited_ids": [],
+        }
 
     evidence = [
         {
@@ -208,6 +236,7 @@ async def respond(state: AgentState) -> dict:
                 "Use only supplied evidence for Zephyr-specific facts. Cite evidence using [1], [2], etc. "
                 "If the evidence does not support a requested conclusion, say so plainly. "
                 "For build errors, distinguish the observed diagnostic from a possible cause and a suggested verification step. "
+                "Keep the answer under 250 words unless the user asks for more; answer in the user's language. "
                 "Never claim to have executed code, modified a repository, or verified a fix.",
             ),
             (
@@ -218,11 +247,27 @@ async def respond(state: AgentState) -> dict:
             ),
         ]
     )
+    answer_text = get_message_text(response)
+    citation_ids_valid, cited_ids = validate_citation_ids(answer_text, citations)
+    if not citation_ids_valid:
+        answer_text += (
+            "\n\n注意：自动引用编号检查未通过；此回答需人工核对，不能作为已验证结论。"
+        )
     source_lines = [
         f"[{item['id']}] {item['section']}: {item['url']}" for item in citations
     ]
-    answer = f"{get_message_text(response)}\n\n资料来源：\n" + "\n".join(source_lines)
-    return {"messages": [AIMessage(content=answer)], "citations": citations}
+    answer = f"{answer_text}\n\n资料来源：\n" + "\n".join(source_lines)
+    return {
+        "messages": [AIMessage(content=answer)],
+        "citations": citations,
+        "generation_used": True,
+        "citation_ids_valid": citation_ids_valid,
+        "cited_ids": cited_ids,
+        "model_usage": {
+            **state.get("model_usage", {}),
+            "answer": response.usage_metadata or {},
+        },
+    }
 
 
 builder = StateGraph(AgentState, input_schema=AgentInput)

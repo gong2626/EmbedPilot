@@ -97,5 +97,14 @@ async def ask(request: AskRequest) -> dict:
         "evidence_ok": result["evidence_ok"],
         "diagnostics": result["diagnostics"],
         "citations": result["citations"],
-        "mode": "hosted" if os.environ.get("DEEPSEEK_API_KEY") else "evidence_preview",
+        "mode": (
+            "hosted"
+            if result["generation_used"]
+            else "evidence_preview"
+            if result["citations"]
+            else "abstained"
+        ),
+        "citation_ids_valid": result["citation_ids_valid"],
+        "cited_ids": result["cited_ids"],
+        "model_usage": result.get("model_usage", {}),
     }

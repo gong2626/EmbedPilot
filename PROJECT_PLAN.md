@@ -9,9 +9,10 @@ Build an embedded software development assistant that can answer cited questions
 ## Implementation status (2026-09-25)
 
 - Completed: pinned sixteen-file Zephyr v4.4.0 documentation corpus, 254 local chunks, source checksums, 384-dimensional CPU vectors, BM25/vector/hybrid search, provenance metadata, and keyword-only fallback.
-- Completed: bounded LangGraph workflow, read-only GCC/Clang/MSVC diagnostic parsing, keyless evidence preview, FastAPI endpoints, local demo page, and seven passing unit/API tests.
+- Completed: bounded LangGraph workflow, read-only GCC/Clang/MSVC diagnostic parsing, keyless evidence preview, FastAPI endpoints, local demo page, and ten passing unit/API tests. Hosted Chinese query translation and citation-number checks are implemented.
 - Completed as a **small exploratory evaluation only**: 15 labeled development questions, 10 additional questions, and 7 offline Agent checks. On the expanded corpus, hybrid Recall@5/MRR@5 is 0.8667/0.8133 on the development set and 0.7500/0.6333 on the additional set. Keyword-only is stronger on both. Do not claim a hybrid performance gain.
-- Not completed: live DeepSeek API validation, held-out/citation/abstention evaluation, real compiler/static-analysis integration, optional Docker verification, and resume-ready evidence.
+- Completed as a small smoke test: five prewritten live DeepSeek cases; all five matched route and generation expectations, all four generated outputs used valid citation IDs and contained the expected source file. Manual source review and caveats are recorded separately; these counts are not broad answer accuracy.
+- Not completed: independent large enough held-out/claim-level citation/abstention evaluation, real compiler/static-analysis integration, optional Docker verification, and final resume-ready evidence.
 
 ## Local environment checked on 2026-09-25
 
@@ -19,7 +20,7 @@ Build an embedded software development assistant that can answer cited questions
 - Python 3.12.7, uv, Git, and Docker client available. Docker Desktop engine is not currently running.
 - CMake, GCC/Clang, and cppcheck are not yet available on `PATH`.
 - `uv sync --group dev` succeeded; upstream unit tests: 1 passed.
-- No model API key is configured in this project. Upstream integration tests require external services and have not been run.
+- The user has configured a DeepSeek API key in the ignored local `.env`; only boolean presence was checked, never its contents. The upstream cloud integration tests have not been run because they require their own external services.
 
 ## Milestones and acceptance checks
 

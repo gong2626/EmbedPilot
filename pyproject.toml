@@ -69,6 +69,7 @@ lint.ignore = [
 "src/retrieval_graph/cli.py" = ["T201"]
 "src/retrieval_graph/evaluation.py" = ["T201"]
 "src/retrieval_graph/agent_evaluation.py" = ["T201"]
+"src/retrieval_graph/hosted_evaluation.py" = ["T201"]
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 

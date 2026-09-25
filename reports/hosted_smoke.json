@@ -1,0 +1,226 @@
+{
+  "timestamp_utc": "2026-09-25T06:33:59.368298+00:00",
+  "model": "deepseek-flash",
+  "corpus_revision": "684c9e8f32e4373a21098559f748f06915f950c9",
+  "case_count": 5,
+  "route_correct_count": 5,
+  "generation_match_count": 5,
+  "citation_id_valid_count": 4,
+  "generated_count": 4,
+  "scope": "Automated route, generation, source-presence and citation-number checks only. Claim-level factual correctness requires manual review.",
+  "rows": [
+    {
+      "id": "g01",
+      "question": "What is priority inheritance in Zephyr mutexes? Answer briefly.",
+      "answer": "**Priority inheritance in Zephyr mutexes**\n\nThe thread that has locked a mutex is eligible for priority inheritance: if a higher-priority thread begins waiting on that mutex, the kernel *temporarily* elevates the owner's priority so it can finish its work and release the lock sooner, running at the same priority as the waiting thread [2].\n\nThe owner's base priority is saved in the mutex when it takes the lock. Each time a higher-priority thread waits, the kernel adjusts the owner's priority; when the owner releases the lock — or the waiting thread times out — the kernel restores the base priority [1][2]. Once unlocked, the unlocking thread resets its priority to what it was before locking [2].\n\nTwo caveats:\n- `CONFIG_PRIORITY_CEILING` limits how high the kernel may raise a thread's priority via inheritance (default -128 = unlimited; setting it at or below the idle thread's priority disables it) [2].\n- With multiple mutexes, behavior can be sub-optimal unless they are unlocked in the reverse order that the owner's priority was raised; the docs recommend locking only one mutex at a time when mutexes are shared between threads of different priorities [1].\n\n资料来源：\n[1] Priority Inheritance: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/synchronization/mutexes.rst\n[2] Priority Inheritance: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/synchronization/mutexes.rst\n[3] Thread Priorities: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/threads/index.rst\n[4] Scheduling Algorithm: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/scheduling/index.rst\n[5] Suggested Uses: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/scheduling/index.rst",
+      "route": "knowledge",
+      "route_correct": true,
+      "evidence_ok": true,
+      "generation_used": true,
+      "generation_expected": true,
+      "generation_match": true,
+      "citation_ids_valid": true,
+      "cited_ids": [
+        2,
+        1,
+        2,
+        2,
+        2,
+        1
+      ],
+      "cited_paths": [
+        "doc/kernel/services/synchronization/mutexes.rst",
+        "doc/kernel/services/synchronization/mutexes.rst",
+        "doc/kernel/services/threads/index.rst",
+        "doc/kernel/services/scheduling/index.rst",
+        "doc/kernel/services/scheduling/index.rst"
+      ],
+      "expected_source_path": "doc/kernel/services/synchronization/mutexes.rst",
+      "expected_source_retrieved": true,
+      "diagnostics": [],
+      "model_usage": {
+        "answer": {
+          "input_tokens": 1490,
+          "output_tokens": 381,
+          "total_tokens": 1871,
+          "input_token_details": {
+            "cache_read": 0
+          },
+          "output_token_details": {
+            "reasoning": 118
+          }
+        }
+      },
+      "latency_ms": 7078.63
+    },
+    {
+      "id": "g02",
+      "question": "Zephyr 的互斥锁如何处理优先级反转？请简要回答。",
+      "answer": "Zephyr 的互斥锁通过**优先级继承（priority inheritance）**处理优先级反转 [1]。\n\n- 当某个线程持有互斥锁时，若有更高优先级的线程开始等待该锁，内核会*临时*提升持有者的优先级，使其以等待线程的优先级运行，从而更快完成工作并释放锁 [1]。\n- 持有者的**基础优先级**在获取锁时保存到互斥锁对象中；每当有更高优先级线程等待，内核就调整持有者优先级。持有者释放锁（或高优先级等待线程超时）后，内核从互斥锁保存的值恢复其基础优先级 [1][2]。\n- `CONFIG_PRIORITY_CEILING` 限制继承可提升的上限，默认值 -128 表示不限制；若设为等于或低于 idle 线程的优先级则禁用该机制 [1]。\n\n**限制条件**：仅涉及单个锁时效果良好；若涉及多个互斥锁，且未按持有者优先级被提升的相反顺序解锁，会出现次优行为。因此建议在线程间共享多个不同优先级的互斥锁时，一个线程一次只锁一个互斥锁 [2]。\n\n注意：以上仅为文档所述机制，未包含对具体实现的验证。\n\n资料来源：\n[1] Priority Inheritance: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/synchronization/mutexes.rst\n[2] Priority Inheritance: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/synchronization/mutexes.rst\n[3] Thread Priorities: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/threads/index.rst\n[4] Suggested Uses: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/scheduling/index.rst\n[5] Meta-IRQ Priorities: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/threads/index.rst",
+      "route": "knowledge",
+      "route_correct": true,
+      "evidence_ok": true,
+      "generation_used": true,
+      "generation_expected": true,
+      "generation_match": true,
+      "citation_ids_valid": true,
+      "cited_ids": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        2
+      ],
+      "cited_paths": [
+        "doc/kernel/services/synchronization/mutexes.rst",
+        "doc/kernel/services/synchronization/mutexes.rst",
+        "doc/kernel/services/threads/index.rst",
+        "doc/kernel/services/scheduling/index.rst",
+        "doc/kernel/services/threads/index.rst"
+      ],
+      "expected_source_path": "doc/kernel/services/synchronization/mutexes.rst",
+      "expected_source_retrieved": true,
+      "diagnostics": [],
+      "model_usage": {
+        "translation": {
+          "input_tokens": 75,
+          "output_tokens": 331,
+          "total_tokens": 406,
+          "input_token_details": {
+            "cache_read": 0
+          },
+          "output_token_details": {
+            "reasoning": 314
+          }
+        },
+        "answer": {
+          "input_tokens": 1520,
+          "output_tokens": 398,
+          "total_tokens": 1918,
+          "input_token_details": {
+            "cache_read": 0
+          },
+          "output_token_details": {
+            "reasoning": 131
+          }
+        }
+      },
+      "latency_ms": 3776.58
+    },
+    {
+      "id": "g03",
+      "question": "src/main.c:42:7: error: implicit declaration of function k_sem_take",
+      "answer": "**Observed diagnostic:** `src/main.c:42:7: error: implicit declaration of function k_sem_take` — the compiler saw a call to `k_sem_take` but no visible declaration at that point.\n\n**Supported fact:** `k_sem_take` is a Zephyr kernel API used to take a semaphore, e.g. `k_sem_take(&my_sem, K_MSEC(50))` [1], and it is also used with `K_NO_WAIT` [2][4]. So the call itself is a valid API usage pattern.\n\n**Possible cause (not proven by the evidence):** the translation unit does not include the Zephyr kernel header that declares `k_sem_take` (typically `<zephyr/kernel.h>`), or the include/`CONFIG_`/Kconfig context for that API is missing. Note that none of the retrieved documents specify the required header or Kconfig symbol for `k_sem_take`, so this is a hypothesis, not an evidence-backed conclusion.\n\n**Suggested verification steps:**\n1. Check whether `src/main.c` includes the Zephyr kernel header before line 42; add the appropriate include if absent.\n2. Inspect the declaration's location in your Zephyr tree (e.g. grep for `k_sem_take` in `include/zephyr/`) to confirm the exact header for your version.\n3. Rebuild and confirm the implicit-declaration error disappears; if a different error appears, treat it separately.\n\nI have not executed any build or modified any files.\n\n资料来源：\n[1] Taking a Semaphore: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/synchronization/semaphores.rst\n[2] Making the CPU idle: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/scheduling/index.rst\n[3] Spawning a Thread: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/threads/index.rst\n[4] Making the CPU idle in an atomic fashion: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/scheduling/index.rst\n[5] Threads: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/threads/index.rst",
+      "route": "build_log",
+      "route_correct": true,
+      "evidence_ok": true,
+      "generation_used": true,
+      "generation_expected": true,
+      "generation_match": true,
+      "citation_ids_valid": true,
+      "cited_ids": [
+        1,
+        2,
+        4
+      ],
+      "cited_paths": [
+        "doc/kernel/services/synchronization/semaphores.rst",
+        "doc/kernel/services/scheduling/index.rst",
+        "doc/kernel/services/threads/index.rst",
+        "doc/kernel/services/scheduling/index.rst",
+        "doc/kernel/services/threads/index.rst"
+      ],
+      "expected_source_path": "doc/kernel/services/synchronization/semaphores.rst",
+      "expected_source_retrieved": true,
+      "diagnostics": [
+        {
+          "path": "src/main.c",
+          "line": 42,
+          "column": 7,
+          "severity": "error",
+          "message": "implicit declaration of function k_sem_take",
+          "code": null
+        }
+      ],
+      "model_usage": {
+        "answer": {
+          "input_tokens": 1662,
+          "output_tokens": 420,
+          "total_tokens": 2082,
+          "input_token_details": {
+            "cache_read": 0
+          },
+          "output_token_details": {
+            "reasoning": 82
+          }
+        }
+      },
+      "latency_ms": 2118.17
+    },
+    {
+      "id": "g04",
+      "question": "How can a semaphore be used to notify a thread from an ISR in Zephyr?",
+      "answer": "**Short answer:** initialise an empty semaphore, give it from the ISR, and let the thread block on it.\n\n**Pattern from the docs**\n\nThe ISR simply gives the semaphore to signal that data or an event is available [1]:\n\n```c\nvoid input_data_interrupt_handler(void *arg)\n{\n    /* notify thread that data is available */\n    k_sem_give(&my_sem);\n    ...\n}\n```\n\nThe consuming thread initialises the semaphore as empty (count 0, limit 1) and waits:\n\n```c\nstatic k_sem my_sem;\n\nvoid my_isr(void *unused)\n{\n    k_sem_give(&my_sem);\n}\n\nint main(void)\n{\n    k_sem_init(&my_sem, 0, 1);\n    ...\n}\n```\n\nThis is the example given in the scheduling documentation [3].\n\n**Key points**\n\n- When the semaphore is given, it is taken by the highest-priority thread that has waited longest [2].\n- `k_sem_give()` is the ISR-safe signalling operation shown in the examples [1][3].\n- The kernel does allow an ISR to take a semaphore, but the ISR must not attempt to wait if the semaphore is unavailable [2] — so a non-blocking check (e.g. `K_NO_WAIT`) is required if the ISR ever takes one.\n- If the thread polls the semaphore while also idling the CPU, use `k_cpu_atomic_idle()` to avoid the race where the interrupt arrives between taking the semaphore and idling [3].\n\n资料来源：\n[1] Giving a Semaphore: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/synchronization/semaphores.rst\n[2] Concepts: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/synchronization/semaphores.rst\n[3] Making the CPU idle in an atomic fashion: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/scheduling/index.rst\n[4] Concepts: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/data_passing/lifos.rst\n[5] Concepts: https://github.com/zephyrproject-rtos/zephyr/blob/684c9e8f32e4373a21098559f748f06915f950c9/doc/kernel/services/data_passing/fifos.rst",
+      "route": "knowledge",
+      "route_correct": true,
+      "evidence_ok": true,
+      "generation_used": true,
+      "generation_expected": true,
+      "generation_match": true,
+      "citation_ids_valid": true,
+      "cited_ids": [
+        1,
+        3,
+        2,
+        1,
+        3,
+        2,
+        3
+      ],
+      "cited_paths": [
+        "doc/kernel/services/synchronization/semaphores.rst",
+        "doc/kernel/services/synchronization/semaphores.rst",
+        "doc/kernel/services/scheduling/index.rst",
+        "doc/kernel/services/data_passing/lifos.rst",
+        "doc/kernel/services/data_passing/fifos.rst"
+      ],
+      "expected_source_path": "doc/kernel/services/synchronization/semaphores.rst",
+      "expected_source_retrieved": true,
+      "diagnostics": [],
+      "model_usage": {
+        "answer": {
+          "input_tokens": 1662,
+          "output_tokens": 490,
+          "total_tokens": 2152,
+          "input_token_details": {
+            "cache_read": 0
+          },
+          "output_token_details": {
+            "reasoning": 151
+          }
+        }
+      },
+      "latency_ms": 2141.24
+    },
+    {
+      "id": "g05",
+      "question": "How do I bake sourdough bread?",
+      "answer": "当前知识库没有找到足够可靠的依据，我不能据此给出确定结论。请提供更具体的 Zephyr 版本、源码片段或完整错误上下文。",
+      "route": "knowledge",
+      "route_correct": true,
+      "evidence_ok": false,
+      "generation_used": false,
+      "generation_expected": false,
+      "generation_match": true,
+      "citation_ids_valid": null,
+      "cited_ids": [],
+      "cited_paths": [],
+      "expected_source_path": null,
+      "expected_source_retrieved": null,
+      "diagnostics": [],
+      "model_usage": {},
+      "latency_ms": 99.17
+    }
+  ]
+}

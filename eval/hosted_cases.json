@@ -1,0 +1,7 @@
+[
+  {"id": "g01", "question": "What is priority inheritance in Zephyr mutexes? Answer briefly.", "expected_route": "knowledge", "expected_source_path": "doc/kernel/services/synchronization/mutexes.rst", "expect_generation": true},
+  {"id": "g02", "question": "Zephyr 的互斥锁如何处理优先级反转？请简要回答。", "expected_route": "knowledge", "expected_source_path": "doc/kernel/services/synchronization/mutexes.rst", "expect_generation": true},
+  {"id": "g03", "question": "src/main.c:42:7: error: implicit declaration of function k_sem_take", "expected_route": "build_log", "expected_source_path": "doc/kernel/services/synchronization/semaphores.rst", "expect_generation": true},
+  {"id": "g04", "question": "How can a semaphore be used to notify a thread from an ISR in Zephyr?", "expected_route": "knowledge", "expected_source_path": "doc/kernel/services/synchronization/semaphores.rst", "expect_generation": true},
+  {"id": "g05", "question": "How do I bake sourdough bread?", "expected_route": "knowledge", "expect_generation": false}
+]

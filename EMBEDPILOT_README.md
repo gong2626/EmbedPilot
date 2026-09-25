@@ -33,6 +33,8 @@ uv run pytest tests/unit_tests -q
 uv run --extra dev ruff check src/retrieval_graph tests/unit_tests
 uv run python -m retrieval_graph.evaluation --cases eval/retrieval_cases_v2.json --output reports/retrieval_v2.json
 uv run python -m retrieval_graph.agent_evaluation --output reports/agent_offline_v2.json
+# Optional: uses your configured DeepSeek API and may incur charges
+uv run python -m retrieval_graph.hosted_evaluation --allow-api
 ```
 
 `eval/retrieval_cases_v2.json` 是 15 条人工编写的英文开发题，按源文件标注相关性。`eval/holdout_cases_v2.json` 是 10 条额外题目，但语料扩充和标签修订发生在评测过程中，因此也不能视作严格盲测 benchmark。这些题只观察检索，不评估生成回答的正确性。当前 16 文件语料上的结果：
@@ -43,15 +45,17 @@ uv run python -m retrieval_graph.agent_evaluation --output reports/agent_offline
 | 向量 | 0.7667 / 0.7333 | 0.7500 / 0.5833 |
 | 混合 | 0.8667 / 0.8133 | 0.7500 / 0.6333 |
 
-混合检索没有超过关键词基线；不能将其描述为性能提升。当前逐题结果见 `reports/retrieval_v2.json` 和 `reports/holdout_v2.json`。十文件语料的旧报告保留作开发记录，但因语料和标签均已改变，不能直接和上表比较。离线 Agent 的 7 条固定检查全部通过，见 `reports/agent_offline_v2.json`；这不是回答质量分数。后续需要补充独立的新题集、引用正确性、真实模型回答和费用评测。
+混合检索没有超过关键词基线；不能将其描述为性能提升。当前逐题结果见 `reports/retrieval_v2.json` 和 `reports/holdout_v2.json`。十文件语料的旧报告保留作开发记录，但因语料和标签均已改变，不能直接和上表比较。离线 Agent 的 7 条固定检查全部通过，见 `reports/agent_offline_v2.json`；这不是回答质量分数。
+
+用户在本机配置密钥后，5 条预设公开题的 DeepSeek 真实调用也已完成：路由和是否调用模型的预期均为 5/5；4 条生成回答的引用**编号**均合法，预期来源文件均出现在引用中。人工逐条核对的范围与保留意见见 `reports/HOSTED_MANUAL_REVIEW.md`。样本太小，不能据此宣称总体回答准确率；令牌用量和每题耗时保存在 `reports/hosted_smoke.json`，未换算费用。
 
 ## 边界与后续
 
 - 当前语料只有 16 个 Zephyr 文档文件，不覆盖完整 SDK、板级驱动或真实企业缺陷库；不要把问答结果当作已验证修复。
-- 英文向量模型对中文问题可能检索较差；尚未完成跨语言查询处理。
+- 英文向量模型对中文问题可能检索较差；有 API 时先翻译查询，离线时拒绝不可靠的中文检索。目前只验证过一条中文真实回答，不能宣称广泛的中文能力。
 - 编译日志工具只解析粘贴的文本，尚未安装或验证真实编译器/静态分析器。
 - 工作流用可解释的规则选择工具，不应表述为“模型自主多工具规划”。
-- 证据阈值是启发式，拒答准确率尚未测定；调用 DeepSeek 的成本和质量也尚未测定。
+- 证据阈值是启发式，系统性的拒答准确率尚未测定；DeepSeek 的回答只经过小样本人工核查和引用编号检查，未做完整事实性或费用评测。
 - 源文档是 Zephyr 项目公开资料；遵守其许可和出处，不在索引中放入个人简历、研究数据或雇主私有代码。
 
 因此项目目前是可复现的 **开发版**，不是可以直接写进简历的最终版。剩余事项与验收标准见 [PROJECT_PLAN.md](PROJECT_PLAN.md)。

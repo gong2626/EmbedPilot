@@ -4,7 +4,7 @@ import pytest
 from fastapi.testclient import TestClient
 from langchain_core.documents import Document
 
-from retrieval_graph.agent_graph import graph
+from retrieval_graph.agent_graph import graph, validate_citation_ids
 from retrieval_graph.api import app
 from retrieval_graph.build_log import parse_build_log
 from retrieval_graph.corpus import (
@@ -131,7 +131,8 @@ def test_api_serves_search_and_keyless_analysis(tmp_path, monkeypatch) -> None:
     )
     assert answer.status_code == 200
     assert answer.json()["route"] == "build_log"
-    assert answer.json()["mode"] == "evidence_preview"
+    assert answer.json()["mode"] == "abstained"
+    assert answer.json()["citations"] == []
 
 
 def test_chinese_question_abstains_without_translation_key(
@@ -146,3 +147,38 @@ def test_chinese_question_abstains_without_translation_key(
     assert result["evidence_ok"] is False
     assert result["citations"] == []
     assert result["attempts"] == 0
+
+
+def test_citation_id_validation_is_syntactic_only() -> None:
+    sources = [{"id": 1}, {"id": 2}]
+    assert validate_citation_ids("Supported by [1][2].", sources) == (True, [1, 2])
+    assert validate_citation_ids("Unsupported [3].", sources) == (False, [3])
+    assert validate_citation_ids("No references.", sources) == (False, [])
+
+
+def test_out_of_scope_question_abstains_before_model_call(
+    tmp_path, monkeypatch
+) -> None:
+    documents = [
+        Document(
+            page_content="Mutex priority inheritance protects shared data.",
+            metadata={"user_id": "public", "section": "Mutex"},
+        ),
+        Document(
+            page_content="Semaphore synchronizes worker threads.",
+            metadata={"user_id": "public", "section": "Semaphore"},
+        ),
+        Document(
+            page_content="Timer expiry wakes a thread.",
+            metadata={"user_id": "public", "section": "Timer"},
+        ),
+    ]
+    LocalIndex(tmp_path).build(documents, with_embeddings=False)
+    monkeypatch.setenv("EMBEDPILOT_INDEX_DIR", str(tmp_path))
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "fake-key-should-never-be-used")
+    result = asyncio.run(
+        graph.ainvoke({"messages": [("user", "How do I bake sourdough bread?")]})
+    )
+    assert result["evidence_ok"] is False
+    assert result["generation_used"] is False
+    assert result["citations"] == []
