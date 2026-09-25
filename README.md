@@ -1,3 +1,9 @@
+# EmbedPilot — embedded-development RAG Agent
+
+This repository is an attributed extension of the LangChain retrieval-agent template. The new local corpus, hybrid search, read-only build-log workflow, API, and evaluation are documented in [EMBEDPILOT_README.md](EMBEDPILOT_README.md). The original template documentation remains below for provenance; its cloud-only setup is **not** required for EmbedPilot.
+
+---
+
 # LangGraph Retrieval Chat Bot Template
 
 [![CI](https://github.com/langchain-ai/retrieval-agent-template/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/langchain-ai/retrieval-agent-template/actions/workflows/unit-tests.yml)

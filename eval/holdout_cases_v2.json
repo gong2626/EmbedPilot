@@ -1,0 +1,12 @@
+[
+  {"id": "h01", "question": "Which kernel primitive uses priority inheritance to address priority inversion?", "relevant_paths": ["doc/kernel/services/synchronization/mutexes.rst"]},
+  {"id": "h02", "question": "How can an interrupt notify a waiting thread that work is ready?", "relevant_paths": ["doc/kernel/services/synchronization/semaphores.rst"]},
+  {"id": "h03", "question": "Where do CMakeLists.txt and prj.conf belong in a simple app?", "relevant_paths": ["doc/develop/application/index.rst"]},
+  {"id": "h04", "question": "Where is a board's hardware topology represented?", "relevant_paths": ["doc/build/dts/intro.rst"]},
+  {"id": "h05", "question": "What does west init do during the initial setup?", "relevant_paths": ["doc/develop/getting_started/index.rst"]},
+  {"id": "h06", "question": "What does k_timer_status_sync wait for?", "relevant_paths": ["doc/kernel/services/timing/timers.rst"]},
+  {"id": "h07", "question": "How does a thread append an item to a kernel queue?", "relevant_paths": ["doc/kernel/services/data_passing/fifos.rst"]},
+  {"id": "h08", "question": "What happens when a thread aborts itself?", "relevant_paths": ["doc/kernel/services/threads/index.rst"]},
+  {"id": "h09", "question": "Why is it inappropriate to lock a mutex from interrupt context?", "relevant_paths": ["doc/kernel/services/synchronization/mutexes.rst"]},
+  {"id": "h10", "question": "Which primitives support both resource exclusion and producer consumer notification?", "relevant_paths": ["doc/kernel/services/synchronization/mutexes.rst", "doc/kernel/services/synchronization/semaphores.rst"]}
+]

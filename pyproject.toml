@@ -20,6 +20,9 @@ dependencies = [
     "msgspec>=0.18.6",
     "langchain-mongodb>=0.1.9",
     "langchain-cohere>=0.2.4",
+    "fastembed>=0.7,<1",
+    "rank-bm25>=0.2,<1",
+    "fastapi>=0.115,<1",
 ]
 
 [project.optional-dependencies]
@@ -63,6 +66,9 @@ lint.ignore = [
 ]
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["D", "UP"]
+"src/retrieval_graph/cli.py" = ["T201"]
+"src/retrieval_graph/evaluation.py" = ["T201"]
+"src/retrieval_graph/agent_evaluation.py" = ["T201"]
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 

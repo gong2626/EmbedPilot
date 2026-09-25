@@ -3,7 +3,8 @@
   "dependencies": ["."],
   "graphs": {
     "indexer": "./src/retrieval_graph/index_graph.py:graph",
-    "retrieval_graph": "./src/retrieval_graph/graph.py:graph"
+    "retrieval_graph": "./src/retrieval_graph/graph.py:graph",
+    "embedpilot": "./src/retrieval_graph/agent_graph.py:graph"
   },
   "env": ".env"
 }

@@ -15,6 +15,7 @@ from langchain_core.runnables import RunnableConfig
 from langchain_core.vectorstores import VectorStoreRetriever
 
 from retrieval_graph.configuration import Configuration, IndexConfiguration
+from retrieval_graph.local_index import LocalRetriever
 
 ## Encoder constructors
 
@@ -107,9 +108,16 @@ def make_mongodb_retriever(
 @contextmanager
 def make_retriever(
     config: RunnableConfig,
-) -> Generator[VectorStoreRetriever, None, None]:
+) -> Generator[VectorStoreRetriever | LocalRetriever, None, None]:
     """Create a retriever for the agent, based on the current configuration."""
     configuration = IndexConfiguration.from_runnable_config(config)
+    if configuration.retriever_provider == "local":
+        yield LocalRetriever(
+            user_id=configuration.user_id,
+            k=int(configuration.search_kwargs.get("k", 5)),
+            mode=str(configuration.search_kwargs.get("mode", "hybrid")),
+        )
+        return
     embedding_model = make_text_encoder(configuration.embedding_model)
     user_id = configuration.user_id
     if not user_id:

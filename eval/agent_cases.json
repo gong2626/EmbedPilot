@@ -1,0 +1,9 @@
+[
+  {"id": "a01", "input": "main.c:7:2: error: k_sem_take undeclared", "expected_route": "build_log", "expected_diagnostics": 1, "expected_evidence": true},
+  {"id": "a02", "input": "main.cpp(12,3): warning C4996: unsafe function", "expected_route": "build_log", "expected_diagnostics": 1},
+  {"id": "a03", "input": "What is priority inheritance for a mutex?", "expected_route": "knowledge", "expected_diagnostics": 0, "expected_evidence": true},
+  {"id": "a04", "input": "How do I bake sourdough bread?", "expected_route": "knowledge", "expected_diagnostics": 0, "expected_evidence": false},
+  {"id": "a05", "input": "What is tomorrow's weather in Wuhan?", "expected_route": "knowledge", "expected_diagnostics": 0, "expected_evidence": false},
+  {"id": "a06", "input": "Zephyr 互斥锁优先级继承是什么？", "expected_route": "knowledge", "expected_diagnostics": 0, "expected_evidence": false, "expected_unsupported_language": true},
+  {"id": "a07", "input": "How does a semaphore synchronize threads?", "expected_route": "knowledge", "expected_diagnostics": 0, "expected_evidence": true}
+]

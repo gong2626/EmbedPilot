@@ -8,10 +8,13 @@ Functions:
     format_docs: Convert documents to an xml-formatted string.
 """
 
+import os
+
 from langchain.chat_models import init_chat_model
 from langchain_core.documents import Document
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import AnyMessage
+from pydantic import SecretStr
 
 
 def get_message_text(msg: AnyMessage) -> str:
@@ -106,4 +109,16 @@ def load_chat_model(fully_specified_name: str) -> BaseChatModel:
     else:
         provider = ""
         model = fully_specified_name
+    if provider == "deepseek":
+        from langchain_openai import ChatOpenAI
+
+        key = os.environ.get("DEEPSEEK_API_KEY")
+        if not key:
+            raise ValueError("DEEPSEEK_API_KEY is not set. See .env.example; never commit a real key.")
+        return ChatOpenAI(
+            model=model,
+            api_key=SecretStr(key),
+            base_url=os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
+            temperature=0,
+        )
     return init_chat_model(model, model_provider=provider)

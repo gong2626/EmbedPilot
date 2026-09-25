@@ -1,0 +1,544 @@
+{
+  "set_name": "holdout_cases_v2",
+  "corpus_revision": "684c9e8f32e4373a21098559f748f06915f950c9",
+  "cases": 10,
+  "k": 5,
+  "label_granularity": "source file",
+  "note": "Small manually authored file-level relevance set; not an answer-quality benchmark. Interpret with the set's creation and tuning history.",
+  "modes": {
+    "keyword": {
+      "recall_at_k": 0.85,
+      "mrr_at_k": 0.69,
+      "median_latency_ms": 29.47,
+      "rows": [
+        {
+          "id": "h01",
+          "question": "Which kernel primitive uses priority inheritance to address priority inversion?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 31.13
+        },
+        {
+          "id": "h02",
+          "question": "How can an interrupt notify a waiting thread that work is ready?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.2,
+          "latency_ms": 28.71
+        },
+        {
+          "id": "h03",
+          "question": "Where do CMakeLists.txt and prj.conf belong in a simple app?",
+          "relevant_paths": [
+            "doc/develop/application/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/build/dts/api-usage.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 29.44
+        },
+        {
+          "id": "h04",
+          "question": "Where is a board's hardware topology represented?",
+          "relevant_paths": [
+            "doc/build/dts/intro.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/dts/index.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/build/dts/api-usage.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 29.32
+        },
+        {
+          "id": "h05",
+          "question": "What does west init do during the initial setup?",
+          "relevant_paths": [
+            "doc/develop/getting_started/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 31.62
+        },
+        {
+          "id": "h06",
+          "question": "What does k_timer_status_sync wait for?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 27.94
+        },
+        {
+          "id": "h07",
+          "question": "How does a thread append an item to a kernel queue?",
+          "relevant_paths": [
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/queues.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 31.19
+        },
+        {
+          "id": "h08",
+          "question": "What happens when a thread aborts itself?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 30.53
+        },
+        {
+          "id": "h09",
+          "question": "Why is it inappropriate to lock a mutex from interrupt context?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 28.51
+        },
+        {
+          "id": "h10",
+          "question": "Which primitives support both resource exclusion and producer consumer notification?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 0.5,
+          "reciprocal_rank": 0.2,
+          "latency_ms": 29.5
+        }
+      ]
+    },
+    "vector": {
+      "recall_at_k": 0.75,
+      "mrr_at_k": 0.5833,
+      "median_latency_ms": 40.86,
+      "rows": [
+        {
+          "id": "h01",
+          "question": "Which kernel primitive uses priority inheritance to address priority inversion?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 1046.04
+        },
+        {
+          "id": "h02",
+          "question": "How can an interrupt notify a waiting thread that work is ready?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 37.64
+        },
+        {
+          "id": "h03",
+          "question": "Where do CMakeLists.txt and prj.conf belong in a simple app?",
+          "relevant_paths": [
+            "doc/develop/application/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/build/kconfig/setting.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/develop/getting_started/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 85.71
+        },
+        {
+          "id": "h04",
+          "question": "Where is a board's hardware topology represented?",
+          "relevant_paths": [
+            "doc/build/dts/intro.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/build/dts/api-usage.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 39.43
+        },
+        {
+          "id": "h05",
+          "question": "What does west init do during the initial setup?",
+          "relevant_paths": [
+            "doc/develop/getting_started/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/build/kconfig/menuconfig.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 37.8
+        },
+        {
+          "id": "h06",
+          "question": "What does k_timer_status_sync wait for?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 41.54
+        },
+        {
+          "id": "h07",
+          "question": "How does a thread append an item to a kernel queue?",
+          "relevant_paths": [
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/lifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 40.71
+        },
+        {
+          "id": "h08",
+          "question": "What happens when a thread aborts itself?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 39.99
+        },
+        {
+          "id": "h09",
+          "question": "Why is it inappropriate to lock a mutex from interrupt context?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 41.0
+        },
+        {
+          "id": "h10",
+          "question": "Which primitives support both resource exclusion and producer consumer notification?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/kernel/services/data_passing/lifos.rst"
+          ],
+          "recall_at_k": 0.5,
+          "reciprocal_rank": 0.3333333333333333,
+          "latency_ms": 43.62
+        }
+      ]
+    },
+    "hybrid": {
+      "recall_at_k": 0.75,
+      "mrr_at_k": 0.6333,
+      "median_latency_ms": 37.09,
+      "rows": [
+        {
+          "id": "h01",
+          "question": "Which kernel primitive uses priority inheritance to address priority inversion?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 36.85
+        },
+        {
+          "id": "h02",
+          "question": "How can an interrupt notify a waiting thread that work is ready?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 36.1
+        },
+        {
+          "id": "h03",
+          "question": "Where do CMakeLists.txt and prj.conf belong in a simple app?",
+          "relevant_paths": [
+            "doc/develop/application/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/build/kconfig/setting.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/build/kconfig/menuconfig.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 38.52
+        },
+        {
+          "id": "h04",
+          "question": "Where is a board's hardware topology represented?",
+          "relevant_paths": [
+            "doc/build/dts/intro.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/build/dts/index.rst",
+            "doc/build/kconfig/setting.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 37.46
+        },
+        {
+          "id": "h05",
+          "question": "What does west init do during the initial setup?",
+          "relevant_paths": [
+            "doc/develop/getting_started/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 36.67
+        },
+        {
+          "id": "h06",
+          "question": "What does k_timer_status_sync wait for?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 35.78
+        },
+        {
+          "id": "h07",
+          "question": "How does a thread append an item to a kernel queue?",
+          "relevant_paths": [
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/queues.rst",
+            "doc/kernel/services/data_passing/lifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 37.34
+        },
+        {
+          "id": "h08",
+          "question": "What happens when a thread aborts itself?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 35.23
+        },
+        {
+          "id": "h09",
+          "question": "Why is it inappropriate to lock a mutex from interrupt context?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 38.2
+        },
+        {
+          "id": "h10",
+          "question": "Which primitives support both resource exclusion and producer consumer notification?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "recall_at_k": 0.5,
+          "reciprocal_rank": 0.3333333333333333,
+          "latency_ms": 37.54
+        }
+      ]
+    }
+  }
+}

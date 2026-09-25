@@ -1,0 +1,802 @@
+{
+  "set_name": "retrieval_cases_v2",
+  "corpus_revision": "684c9e8f32e4373a21098559f748f06915f950c9",
+  "cases": 15,
+  "k": 5,
+  "label_granularity": "source file",
+  "note": "Small manually authored file-level relevance set; not an answer-quality benchmark. Interpret with the set's creation and tuning history.",
+  "modes": {
+    "keyword": {
+      "recall_at_k": 0.8667,
+      "mrr_at_k": 0.8333,
+      "median_latency_ms": 28.51,
+      "rows": [
+        {
+          "id": "q01",
+          "question": "How do I create and start a Zephyr thread?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/build/dts/api-usage.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 30.36
+        },
+        {
+          "id": "q02",
+          "question": "What is priority inheritance for a mutex?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 30.32
+        },
+        {
+          "id": "q03",
+          "question": "Can a semaphore be given from an ISR?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 28.51
+        },
+        {
+          "id": "q04",
+          "question": "How are data items passed between threads using a queue?",
+          "relevant_paths": [
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/queues.rst",
+            "doc/kernel/services/data_passing/lifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 27.89
+        },
+        {
+          "id": "q05",
+          "question": "How can an application use a kernel timer?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 27.63
+        },
+        {
+          "id": "q06",
+          "question": "At what points can the Zephyr scheduler reschedule threads?",
+          "relevant_paths": [
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 27.96
+        },
+        {
+          "id": "q07",
+          "question": "How are hardware nodes represented in devicetree?",
+          "relevant_paths": [
+            "doc/build/dts/intro.rst"
+          ],
+          "retrieved_paths": [
+            "doc/build/dts/index.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 30.71
+        },
+        {
+          "id": "q08",
+          "question": "How do I configure an application with Kconfig options?",
+          "relevant_paths": [
+            "doc/build/kconfig/setting.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 28.2
+        },
+        {
+          "id": "q09",
+          "question": "What files belong in a basic Zephyr application?",
+          "relevant_paths": [
+            "doc/develop/application/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/build/kconfig/setting.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 27.91
+        },
+        {
+          "id": "q10",
+          "question": "How do I install the SDK and get started with west?",
+          "relevant_paths": [
+            "doc/develop/getting_started/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/menuconfig.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 27.92
+        },
+        {
+          "id": "q11",
+          "question": "How is the stack memory of a thread defined?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 28.7
+        },
+        {
+          "id": "q12",
+          "question": "What is the difference between semaphore and mutex usage?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/build/kconfig/setting.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 28.25
+        },
+        {
+          "id": "q13",
+          "question": "How do I wait for a timer expiry?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/lifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 30.3
+        },
+        {
+          "id": "q14",
+          "question": "What happens when a thread calls k_yield?",
+          "relevant_paths": [
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 30.51
+        },
+        {
+          "id": "q15",
+          "question": "How should threads synchronize access to shared resources?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 30.19
+        }
+      ]
+    },
+    "vector": {
+      "recall_at_k": 0.7667,
+      "mrr_at_k": 0.7333,
+      "median_latency_ms": 38.54,
+      "rows": [
+        {
+          "id": "q01",
+          "question": "How do I create and start a Zephyr thread?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/kernel/services/data_passing/queues.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 1178.16
+        },
+        {
+          "id": "q02",
+          "question": "What is priority inheritance for a mutex?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 35.03
+        },
+        {
+          "id": "q03",
+          "question": "Can a semaphore be given from an ISR?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 36.05
+        },
+        {
+          "id": "q04",
+          "question": "How are data items passed between threads using a queue?",
+          "relevant_paths": [
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 40.03
+        },
+        {
+          "id": "q05",
+          "question": "How can an application use a kernel timer?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 43.26
+        },
+        {
+          "id": "q06",
+          "question": "At what points can the Zephyr scheduler reschedule threads?",
+          "relevant_paths": [
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/queues.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 41.81
+        },
+        {
+          "id": "q07",
+          "question": "How are hardware nodes represented in devicetree?",
+          "relevant_paths": [
+            "doc/build/dts/intro.rst"
+          ],
+          "retrieved_paths": [
+            "doc/build/dts/index.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 36.86
+        },
+        {
+          "id": "q08",
+          "question": "How do I configure an application with Kconfig options?",
+          "relevant_paths": [
+            "doc/build/kconfig/setting.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/develop/application/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/build/kconfig/menuconfig.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 40.59
+        },
+        {
+          "id": "q09",
+          "question": "What files belong in a basic Zephyr application?",
+          "relevant_paths": [
+            "doc/develop/application/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 37.87
+        },
+        {
+          "id": "q10",
+          "question": "How do I install the SDK and get started with west?",
+          "relevant_paths": [
+            "doc/develop/getting_started/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/build/kconfig/menuconfig.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 36.3
+        },
+        {
+          "id": "q11",
+          "question": "How is the stack memory of a thread defined?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 42.54
+        },
+        {
+          "id": "q12",
+          "question": "What is the difference between semaphore and mutex usage?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 39.71
+        },
+        {
+          "id": "q13",
+          "question": "How do I wait for a timer expiry?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 38.54
+        },
+        {
+          "id": "q14",
+          "question": "What happens when a thread calls k_yield?",
+          "relevant_paths": [
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/lifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5,
+          "latency_ms": 37.79
+        },
+        {
+          "id": "q15",
+          "question": "How should threads synchronize access to shared resources?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 0.5,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 36.62
+        }
+      ]
+    },
+    "hybrid": {
+      "recall_at_k": 0.8667,
+      "mrr_at_k": 0.8133,
+      "median_latency_ms": 37.54,
+      "rows": [
+        {
+          "id": "q01",
+          "question": "How do I create and start a Zephyr thread?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.2,
+          "latency_ms": 35.62
+        },
+        {
+          "id": "q02",
+          "question": "What is priority inheritance for a mutex?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 35.3
+        },
+        {
+          "id": "q03",
+          "question": "Can a semaphore be given from an ISR?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 36.7
+        },
+        {
+          "id": "q04",
+          "question": "How are data items passed between threads using a queue?",
+          "relevant_paths": [
+            "doc/kernel/services/data_passing/fifos.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/data_passing/lifos.rst",
+            "doc/kernel/services/data_passing/queues.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 37.54
+        },
+        {
+          "id": "q05",
+          "question": "How can an application use a kernel timer?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 35.86
+        },
+        {
+          "id": "q06",
+          "question": "At what points can the Zephyr scheduler reschedule threads?",
+          "relevant_paths": [
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 37.72
+        },
+        {
+          "id": "q07",
+          "question": "How are hardware nodes represented in devicetree?",
+          "relevant_paths": [
+            "doc/build/dts/intro.rst"
+          ],
+          "retrieved_paths": [
+            "doc/build/dts/index.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/build/dts/api-usage.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/dts/index.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 37.23
+        },
+        {
+          "id": "q08",
+          "question": "How do I configure an application with Kconfig options?",
+          "relevant_paths": [
+            "doc/build/kconfig/setting.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0,
+          "latency_ms": 39.58
+        },
+        {
+          "id": "q09",
+          "question": "What files belong in a basic Zephyr application?",
+          "relevant_paths": [
+            "doc/develop/application/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst",
+            "doc/build/kconfig/setting.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 43.72
+        },
+        {
+          "id": "q10",
+          "question": "How do I install the SDK and get started with west?",
+          "relevant_paths": [
+            "doc/develop/getting_started/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/develop/getting_started/index.rst",
+            "doc/develop/getting_started/index.rst",
+            "doc/build/kconfig/menuconfig.rst",
+            "doc/develop/application/index.rst",
+            "doc/develop/application/index.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 43.85
+        },
+        {
+          "id": "q11",
+          "question": "How is the stack memory of a thread defined?",
+          "relevant_paths": [
+            "doc/kernel/services/threads/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/data_passing/fifos.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 41.88
+        },
+        {
+          "id": "q12",
+          "question": "What is the difference between semaphore and mutex usage?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 39.25
+        },
+        {
+          "id": "q13",
+          "question": "How do I wait for a timer expiry?",
+          "relevant_paths": [
+            "doc/kernel/services/timing/timers.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/timing/timers.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/data_passing/lifos.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 36.93
+        },
+        {
+          "id": "q14",
+          "question": "What happens when a thread calls k_yield?",
+          "relevant_paths": [
+            "doc/kernel/services/scheduling/index.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/scheduling/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 40.66
+        },
+        {
+          "id": "q15",
+          "question": "How should threads synchronize access to shared resources?",
+          "relevant_paths": [
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/semaphores.rst"
+          ],
+          "retrieved_paths": [
+            "doc/kernel/services/synchronization/semaphores.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/threads/index.rst",
+            "doc/kernel/services/synchronization/mutexes.rst",
+            "doc/kernel/services/synchronization/mutexes.rst"
+          ],
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "latency_ms": 37.11
+        }
+      ]
+    }
+  }
+}

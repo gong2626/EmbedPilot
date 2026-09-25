@@ -1,0 +1,17 @@
+[
+  {"id": "q01", "question": "How do I create and start a Zephyr thread?", "relevant_paths": ["doc/kernel/services/threads/index.rst"]},
+  {"id": "q02", "question": "What is priority inheritance for a mutex?", "relevant_paths": ["doc/kernel/services/synchronization/mutexes.rst"]},
+  {"id": "q03", "question": "Can a semaphore be given from an ISR?", "relevant_paths": ["doc/kernel/services/synchronization/semaphores.rst"]},
+  {"id": "q04", "question": "How are data items passed between threads using a queue?", "relevant_paths": ["doc/kernel/services/data_passing/queues.rst"]},
+  {"id": "q05", "question": "How can an application use a kernel timer?", "relevant_paths": ["doc/kernel/services/timing/timers.rst"]},
+  {"id": "q06", "question": "At what points can the Zephyr scheduler reschedule threads?", "relevant_paths": ["doc/kernel/services/scheduling/index.rst"]},
+  {"id": "q07", "question": "How are hardware nodes represented in devicetree?", "relevant_paths": ["doc/build/dts/index.rst"]},
+  {"id": "q08", "question": "How do I configure an application with Kconfig options?", "relevant_paths": ["doc/build/kconfig/index.rst"]},
+  {"id": "q09", "question": "What files belong in a basic Zephyr application?", "relevant_paths": ["doc/develop/application/index.rst"]},
+  {"id": "q10", "question": "How do I install the SDK and get started with west?", "relevant_paths": ["doc/develop/getting_started/index.rst"]},
+  {"id": "q11", "question": "How is the stack memory of a thread defined?", "relevant_paths": ["doc/kernel/services/threads/index.rst"]},
+  {"id": "q12", "question": "What is the difference between semaphore and mutex usage?", "relevant_paths": ["doc/kernel/services/synchronization/semaphores.rst", "doc/kernel/services/synchronization/mutexes.rst"]},
+  {"id": "q13", "question": "How do I wait for a timer expiry?", "relevant_paths": ["doc/kernel/services/timing/timers.rst"]},
+  {"id": "q14", "question": "What happens when a thread calls k_yield?", "relevant_paths": ["doc/kernel/services/scheduling/index.rst"]},
+  {"id": "q15", "question": "How should threads synchronize access to shared resources?", "relevant_paths": ["doc/kernel/services/synchronization/mutexes.rst", "doc/kernel/services/synchronization/semaphores.rst"]}
+]
