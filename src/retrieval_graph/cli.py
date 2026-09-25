@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
+from langchain_core.messages import HumanMessage
 
 from retrieval_graph.corpus import load_zephyr_corpus, write_corpus_manifest
 from retrieval_graph.local_index import LocalIndex, index_dir
@@ -39,6 +40,9 @@ def main() -> None:
         "question", nargs="?", help="Question or pasted compiler diagnostic"
     )
     ask.add_argument("--log-file", type=Path, help="Read a build log from a local file")
+    ask.add_argument(
+        "--code-file", type=Path, help="Analyze a C/C++ source file via Cppcheck"
+    )
     args = parser.parse_args()
 
     if args.command == "ingest":
@@ -68,14 +72,22 @@ def main() -> None:
         from retrieval_graph.agent_graph import graph
 
         load_dotenv(Path(__file__).resolve().parents[2] / ".env")
-        question = (
-            args.log_file.read_text(encoding="utf-8", errors="replace")
-            if args.log_file
-            else args.question
-        )
+        if args.log_file and args.code_file:
+            parser.error("Choose only one of --log-file and --code-file")
+        if args.code_file:
+            suffix = args.code_file.suffix.lower()
+            if suffix not in {".c", ".cc", ".cpp", ".cxx"}:
+                parser.error("--code-file must be a C or C++ source file")
+            language = "c" if suffix == ".c" else "cpp"
+            code = args.code_file.read_text(encoding="utf-8", errors="replace")
+            question = f"Please inspect this code:\n```{language}\n{code}\n```"
+        elif args.log_file:
+            question = args.log_file.read_text(encoding="utf-8", errors="replace")
+        else:
+            question = args.question
         if not question:
-            parser.error("ask requires a question or --log-file")
-        result = asyncio.run(graph.ainvoke({"messages": [("user", question)]}))
+            parser.error("ask requires a question, --log-file, or --code-file")
+        result = asyncio.run(graph.ainvoke({"messages": [HumanMessage(content=question)]}))
         print(result["messages"][-1].content)
         print(
             f"\nroute={result['route']} attempts={result['attempts']} evidence_ok={result['evidence_ok']}"

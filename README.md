@@ -1,6 +1,6 @@
 # EmbedPilot — embedded-development RAG Agent
 
-This repository is an attributed extension of the LangChain retrieval-agent template. The new local corpus, hybrid search, read-only build-log workflow, API, and evaluation are documented in [EMBEDPILOT_README.md](EMBEDPILOT_README.md). The original template documentation remains below for provenance; its cloud-only setup is **not** required for EmbedPilot.
+This repository is an attributed extension of the LangChain retrieval-agent template. The new local corpus, retrieval comparison, read-only build-log and Cppcheck tools, API, and evaluation are documented in [EMBEDPILOT_README.md](EMBEDPILOT_README.md). Resume/interview boundaries are in [RESUME_NOTES.md](RESUME_NOTES.md). The original template documentation remains below for provenance; its cloud-only setup is **not** required for EmbedPilot.
 
 ---
 

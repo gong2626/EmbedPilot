@@ -126,6 +126,7 @@ celerybeat.pid
 .venv
 data/raw/
 data/index/
+tools/cppcheck/
 env/
 venv/
 ENV/

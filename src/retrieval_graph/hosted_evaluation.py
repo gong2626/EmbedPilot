@@ -51,22 +51,34 @@ async def evaluate(cases_path: Path) -> dict:
                     if case.get("expected_source_path")
                     else None
                 ),
+                "expected_diagnostic_code": case.get("expected_diagnostic_code"),
+                "expected_diagnostic_found": (
+                    any(
+                        item.get("code") == case["expected_diagnostic_code"]
+                        for item in result["diagnostics"]
+                    )
+                    if case.get("expected_diagnostic_code")
+                    else None
+                ),
                 "diagnostics": result["diagnostics"],
                 "model_usage": result.get("model_usage", {}),
                 "latency_ms": round((time.perf_counter() - start) * 1000, 2),
             }
         )
     generated = [row for row in rows if row["generation_used"]]
+    citation_applicable = [row for row in generated if row["cited_paths"]]
     return {
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "model": "deepseek-flash",
+        "agent_search_mode": os.environ.get("EMBEDPILOT_AGENT_SEARCH_MODE", "keyword"),
         "corpus_revision": ZEPHYR_COMMIT,
         "case_count": len(rows),
         "route_correct_count": sum(row["route_correct"] for row in rows),
         "generation_match_count": sum(row["generation_match"] for row in rows),
         "citation_id_valid_count": sum(
-            row["citation_ids_valid"] is True for row in generated
+            row["citation_ids_valid"] is True for row in citation_applicable
         ),
+        "citation_check_applicable_count": len(citation_applicable),
         "generated_count": len(generated),
         "scope": "Automated route, generation, source-presence and citation-number checks only. Claim-level factual correctness requires manual review.",
         "rows": rows,
@@ -101,7 +113,7 @@ def main() -> None:
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     print(
-        f"Cases: {report['case_count']}; route checks: {report['route_correct_count']}; generation checks: {report['generation_match_count']}; citation IDs: {report['citation_id_valid_count']}/{report['generated_count']}"
+        f"Cases: {report['case_count']}; route checks: {report['route_correct_count']}; generation checks: {report['generation_match_count']}; citation IDs: {report['citation_id_valid_count']}/{report['citation_check_applicable_count']}"
     )
     print(f"Report: {args.output.resolve()}")
 

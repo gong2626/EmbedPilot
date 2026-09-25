@@ -9,10 +9,10 @@ Build an embedded software development assistant that can answer cited questions
 ## Implementation status (2026-09-25)
 
 - Completed: pinned sixteen-file Zephyr v4.4.0 documentation corpus, 254 local chunks, source checksums, 384-dimensional CPU vectors, BM25/vector/hybrid search, provenance metadata, and keyword-only fallback.
-- Completed: bounded LangGraph workflow, read-only GCC/Clang/MSVC diagnostic parsing, keyless evidence preview, FastAPI endpoints, local demo page, and ten passing unit/API tests. Hosted Chinese query translation and citation-number checks are implemented.
+- Completed: bounded LangGraph workflow, read-only GCC/Clang/MSVC diagnostic parsing, project-local Cppcheck 2.22.0 integration and synthetic bounds-bug check, keyless evidence preview, FastAPI endpoints, local demo page, and fifteen passing unit/integration tests. Hosted Chinese query translation and citation-number checks are implemented.
 - Completed as a **small exploratory evaluation only**: 15 labeled development questions, 10 additional questions, and 7 offline Agent checks. On the expanded corpus, hybrid Recall@5/MRR@5 is 0.8667/0.8133 on the development set and 0.7500/0.6333 on the additional set. Keyword-only is stronger on both. Do not claim a hybrid performance gain.
-- Completed as a small smoke test: five prewritten live DeepSeek cases; all five matched route and generation expectations, all four generated outputs used valid citation IDs and contained the expected source file. Manual source review and caveats are recorded separately; these counts are not broad answer accuracy.
-- Not completed: independent large enough held-out/claim-level citation/abstention evaluation, real compiler/static-analysis integration, optional Docker verification, and final resume-ready evidence.
+- Completed as small smoke tests: five prewritten live DeepSeek cases in both initial hybrid and deployed keyword modes, plus one synthetic Cppcheck→DeepSeek code case. In keyword mode all five matched route and generation expectations; all four document-grounded outputs used valid citation IDs and contained the expected source file. The code case found the expected `arrayIndexOutOfBounds` diagnostic. Manual source review and caveats are recorded separately; these counts are not broad answer accuracy.
+- Not completed: independent large enough held-out/claim-level citation/abstention evaluation, real Zephyr project or board validation, optional Docker verification, and user review of resume wording.
 
 ## Local environment checked on 2026-09-25
 

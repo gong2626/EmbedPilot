@@ -13,6 +13,7 @@ from retrieval_graph.corpus import (
     chunk_source,
     load_zephyr_corpus,
 )
+from retrieval_graph.cppcheck_tool import parse_cppcheck_xml
 from retrieval_graph.local_index import LocalIndex, tokenize
 
 
@@ -46,6 +47,14 @@ def test_build_log_parser_handles_gcc_and_msvc() -> None:
     assert diagnostics[0].path == "src/main.c"
     assert diagnostics[0].line == 42
     assert diagnostics[1].code == "C4996"
+
+
+def test_cppcheck_xml_parser_does_not_expose_temp_path() -> None:
+    xml = '<results><errors><error id="arrayIndexOutOfBounds" severity="error" msg="Array too small" cwe="788"><location file="C:/private/source.c" line="5" column="19"/></error></errors></results>'
+    findings = parse_cppcheck_xml(xml)
+    assert findings[0]["code"] == "arrayIndexOutOfBounds"
+    assert findings[0]["path"] == "<snippet>"
+    assert findings[0]["line"] == 5
 
 
 def test_keyword_index_is_local_and_namespaced(tmp_path) -> None:
@@ -182,3 +191,60 @@ def test_out_of_scope_question_abstains_before_model_call(
     assert result["evidence_ok"] is False
     assert result["generation_used"] is False
     assert result["citations"] == []
+
+
+def test_fenced_c_code_routes_to_static_analysis(tmp_path, monkeypatch) -> None:
+    documents = [
+        Document(
+            page_content=f"Zephyr thread timing notes {i}.",
+            metadata={
+                "user_id": "public",
+                "section": "Thread",
+                "path": f"thread{i}.rst",
+            },
+        )
+        for i in range(3)
+    ]
+    LocalIndex(tmp_path).build(documents, with_embeddings=False)
+    monkeypatch.setenv("EMBEDPILOT_INDEX_DIR", str(tmp_path))
+    monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
+    monkeypatch.setattr(
+        "retrieval_graph.agent_graph.analyze_code",
+        lambda code, language: [
+            {
+                "tool": "cppcheck",
+                "code": "arrayIndexOutOfBounds",
+                "severity": "error",
+                "message": "Array accessed out of bounds",
+                "line": 5,
+            }
+        ],
+    )
+    result = asyncio.run(
+        graph.ainvoke(
+            {
+                "messages": [
+                    ("user", "Please inspect:\n```c\nint x[2]; int y=x[2];\n```")
+                ]
+            }
+        )
+    )
+    assert result["route"] == "source_code"
+    assert result["diagnostics"][0]["tool"] == "cppcheck"
+    assert result["evidence_ok"] is True
+    assert result["generation_used"] is False
+    assert result["citations"] == []
+    assert result["attempts"] == 0
+
+
+def test_cppcheck_no_findings_is_not_claimed_bug_free(monkeypatch) -> None:
+    monkeypatch.setattr(
+        "retrieval_graph.agent_graph.analyze_code", lambda code, language: []
+    )
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "fake-key-should-never-be-used")
+    result = asyncio.run(
+        graph.ainvoke({"messages": [("user", "```c\nint x(void) { return 1; }\n```")]})
+    )
+    assert result["route"] == "source_code"
+    assert result["generation_used"] is False
+    assert "不代表" in result["messages"][-1].content

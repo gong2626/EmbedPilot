@@ -18,7 +18,8 @@
 </head>
 <body>
   <h1>EmbedPilot</h1>
-  <p>查询 Zephyr 开发文档，或粘贴 GCC / Clang / MSVC 编译日志。系统只读取输入与本地索引，不运行或修改你的代码。</p>
+  <p>查询 Zephyr 开发文档，粘贴 GCC / Clang / MSVC 编译日志，或用 <code>```c</code> 代码块提交 C/C++ 片段做 Cppcheck 静态分析。系统不编译或执行你的代码，也不修改原文件。</p>
+  <p>注意：若已配置 DeepSeek API，点击“分析”会将输入和相关文档片段发送给模型服务。请勿粘贴私有或敏感代码。</p>
   <div class="panel">
     <textarea id="question" placeholder="例如：What is priority inheritance for a mutex?&#10;或：src/main.c:42:7: error: implicit declaration of function k_sem_take"></textarea>
     <br><button id="submit">分析</button>

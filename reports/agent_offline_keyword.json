@@ -1,0 +1,112 @@
+{
+  "cases": 7,
+  "passed": 7,
+  "scope": "offline heuristic routing, log parsing, and retrieval evidence gate only; not generated answer quality",
+  "rows": [
+    {
+      "id": "a01",
+      "actual": {
+        "route": "build_log",
+        "diagnostics": 1,
+        "evidence": true,
+        "unsupported_language": false
+      },
+      "checks": {
+        "expected_route": true,
+        "expected_diagnostics": true,
+        "expected_evidence": true
+      },
+      "passed": true
+    },
+    {
+      "id": "a02",
+      "actual": {
+        "route": "build_log",
+        "diagnostics": 1,
+        "evidence": true,
+        "unsupported_language": false
+      },
+      "checks": {
+        "expected_route": true,
+        "expected_diagnostics": true
+      },
+      "passed": true
+    },
+    {
+      "id": "a03",
+      "actual": {
+        "route": "knowledge",
+        "diagnostics": 0,
+        "evidence": true,
+        "unsupported_language": false
+      },
+      "checks": {
+        "expected_route": true,
+        "expected_diagnostics": true,
+        "expected_evidence": true
+      },
+      "passed": true
+    },
+    {
+      "id": "a04",
+      "actual": {
+        "route": "knowledge",
+        "diagnostics": 0,
+        "evidence": false,
+        "unsupported_language": false
+      },
+      "checks": {
+        "expected_route": true,
+        "expected_diagnostics": true,
+        "expected_evidence": true
+      },
+      "passed": true
+    },
+    {
+      "id": "a05",
+      "actual": {
+        "route": "knowledge",
+        "diagnostics": 0,
+        "evidence": false,
+        "unsupported_language": false
+      },
+      "checks": {
+        "expected_route": true,
+        "expected_diagnostics": true,
+        "expected_evidence": true
+      },
+      "passed": true
+    },
+    {
+      "id": "a06",
+      "actual": {
+        "route": "knowledge",
+        "diagnostics": 0,
+        "evidence": false,
+        "unsupported_language": true
+      },
+      "checks": {
+        "expected_route": true,
+        "expected_diagnostics": true,
+        "expected_evidence": true,
+        "expected_unsupported_language": true
+      },
+      "passed": true
+    },
+    {
+      "id": "a07",
+      "actual": {
+        "route": "knowledge",
+        "diagnostics": 0,
+        "evidence": true,
+        "unsupported_language": false
+      },
+      "checks": {
+        "expected_route": true,
+        "expected_diagnostics": true,
+        "expected_evidence": true
+      },
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "id": "g06",
+    "question": "Please analyze this synthetic C snippet:\n```c\nint read_sensor(void)\n{\n    int samples[2] = {1, 2};\n    return samples[2];\n}\n```",
+    "expected_route": "source_code",
+    "expected_diagnostic_code": "arrayIndexOutOfBounds",
+    "expect_generation": true
+  }
+]

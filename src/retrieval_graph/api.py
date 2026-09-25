@@ -15,6 +15,7 @@ from langchain_core.messages import HumanMessage
 from pydantic import BaseModel, Field
 
 from retrieval_graph.agent_graph import graph
+from retrieval_graph.cppcheck_tool import analyze_code
 from retrieval_graph.local_index import LocalIndex, index_dir
 from retrieval_graph.utils import get_message_text
 
@@ -33,6 +34,13 @@ class AskRequest(BaseModel):
     question: str = Field(min_length=1, max_length=12000)
 
 
+class CodeRequest(BaseModel):
+    """Temporary C/C++ snippet to inspect without executing it."""
+
+    code: str = Field(min_length=1, max_length=12000)
+    language: Literal["c", "cpp"] = "c"
+
+
 @app.get("/")
 def demo() -> FileResponse:
     """Serve the local demonstration page."""
@@ -49,6 +57,7 @@ def health() -> dict:
         "documents": manifest["documents"] if manifest else 0,
         "embedding_model": manifest["embedding_model"] if manifest else None,
         "generation_configured": bool(os.environ.get("DEEPSEEK_API_KEY")),
+        "agent_search_mode": os.environ.get("EMBEDPILOT_AGENT_SEARCH_MODE", "keyword"),
     }
 
 
@@ -81,6 +90,22 @@ async def search(
     }
 
 
+@app.post("/analyze-code")
+async def analyze_code_endpoint(request: CodeRequest) -> dict:
+    """Run read-only Cppcheck and return structured findings."""
+    try:
+        findings = await asyncio.to_thread(
+            analyze_code, request.code, language=request.language
+        )
+    except FileNotFoundError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    except TimeoutError as error:
+        raise HTTPException(status_code=504, detail="Cppcheck timed out") from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return {"tool": "cppcheck", "findings": findings, "count": len(findings)}
+
+
 @app.post("/ask")
 async def ask(request: AskRequest) -> dict:
     """Run the bounded LangGraph workflow and return grounded output."""
@@ -102,6 +127,8 @@ async def ask(request: AskRequest) -> dict:
             if result["generation_used"]
             else "evidence_preview"
             if result["citations"]
+            else "analysis_preview"
+            if result["route"] == "source_code" and result["diagnostics"]
             else "abstained"
         ),
         "citation_ids_valid": result["citation_ids_valid"],
