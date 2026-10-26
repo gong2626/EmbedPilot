@@ -2,6 +2,8 @@
 
 这是基于 [LangChain retrieval-agent-template](https://github.com/langchain-ai/retrieval-agent-template) 的二次开发项目，保留原仓库历史与 MIT 许可。它不是原模板的直接演示：新增了固定版本的 Zephyr 文档语料、本地 BM25 + 向量检索、有限重试的 LangGraph 工作流、编译日志解析、只读 API/网页和可复跑的评测。
 
+如果刚接触 RAG、Agent 或 LangGraph，先读 [从零读懂 EmbedPilot：项目原理、代码路线与面试准备](PROJECT_EXPLAINED_ZH.md)。
+
 ## 当前能力
 
 - 从 Zephyr v4.4.0 的固定提交 `684c9e8f32e4373a21098559f748f06915f950c9` 下载 16 个公开文档文件，切成 254 个片段；每个片段记录文件、章节、源码链接、版本和许可。下载后按项目中固定的 SHA-256 校验。原文来自 [Zephyr 官方仓库](https://github.com/zephyrproject-rtos/zephyr)。首次构建需要联网；原文快照和索引在 `data/` 下，不纳入 Git。
@@ -28,7 +30,7 @@ uv run uvicorn retrieval_graph.api:app --host 127.0.0.1 --port 8000
 
 **数据边界**：`/analyze-code` 只在本机运行 Cppcheck；配置 API 后，`/ask` 会把用户问题、粘贴的日志/代码片段和检索片段发送给 DeepSeek 生成回答。请勿输入单位私有代码、个人敏感数据或未获授权的资料。服务按上例只绑定 `127.0.0.1`；不要将这个未加认证的演示接口直接暴露到公网。
 
-需要模型回答时，在项目根目录的 `.env` 中填写 `DEEPSEEK_API_KEY`。使用官方接口时保持 `DEEPSEEK_BASE_URL=https://api.deepseek.com`；`DeepSeek-V4.1-Flash` 的 API 模型标识是 `deepseek-flash`，以 [DeepSeek 官方接口说明](https://api-docs.deepseek.com/guides/harness) 为准。`.env` 已被 Git 忽略，**不要把密钥发到聊天或提交到仓库**。目前尚未用用户密钥做真实 API 端到端验证。
+需要模型回答时，在项目根目录的 `.env` 中填写 `DEEPSEEK_API_KEY`。使用官方接口时保持 `DEEPSEEK_BASE_URL=https://api.deepseek.com`；`DeepSeek-V4.1-Flash` 的 API 模型标识是 `deepseek-flash`，以 [DeepSeek 官方接口说明](https://api-docs.deepseek.com/guides/harness) 为准。`.env` 已被 Git 忽略，**不要把密钥发到聊天或提交到仓库**。本机已完成下文所述的小规模真实 API 烟测；再次调用前仍需确认密钥和账户当前可用。
 
 ## 验证与评测
 
@@ -63,4 +65,4 @@ uv run python -m retrieval_graph.hosted_evaluation --allow-api --output reports/
 - 证据阈值是启发式，系统性的拒答准确率尚未测定；DeepSeek 的回答只经过小样本人工核查和引用编号检查，未做完整事实性或费用评测。
 - 源文档是 Zephyr 项目公开资料；遵守其许可和出处，不在索引中放入个人简历、研究数据或雇主私有代码。
 
-因此项目目前是可复现的 **开发版**，不是可以直接写进简历的最终版。剩余事项与验收标准见 [PROJECT_PLAN.md](PROJECT_PLAN.md)。
+因此项目目前是可复现的 **开发版**，可在本人亲自复现、理解并确认措辞后，以“开源模板二次开发的个人项目”写入简历；不要宣称生产上线或已在真实板卡验证。剩余事项与验收标准见 [PROJECT_PLAN.md](PROJECT_PLAN.md)，简历边界见 [RESUME_NOTES.md](RESUME_NOTES.md)。
